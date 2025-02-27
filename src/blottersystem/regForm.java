@@ -6,6 +6,8 @@
 package blottersystem;
 
 import config.dbConnector;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,7 +22,39 @@ public class regForm extends javax.swing.JFrame {
     public regForm() {
         initComponents();
     }
-
+     public static String email, usname;
+     
+    public boolean duplicateCheck(){
+     dbConnector dbc = new dbConnector();
+     
+     try{
+     String query = "SELECT * FROM tbl_user WHERE u_username = '"+un.getText()+"'OR u_email ='"+em.getText()+"'";
+            ResultSet resultSet = dbc.getData(query);
+            
+            if(resultSet.next()){                    
+               email =resultSet.getString("u_email");
+                
+                if(email.equals(em.getText())){
+                    JOptionPane.showMessageDialog(null,"Email Already Used!");
+                    em.setText("");
+                }
+                
+               usname =resultSet.getString("u_username");
+               if(usname.equals(un.getText())){
+                   JOptionPane.showMessageDialog(null,"Username Already Used!");
+                   un.setText("");
+               }               
+                return true; 
+            }else{
+                return false;
+            }
+            
+     }catch(SQLException ex){
+     System.out.println(""+ex);
+     return false;
+     }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -192,20 +226,32 @@ public class regForm extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
+        
+            if(fn.getText().isEmpty()|| ln.getText().isEmpty()|| em.getText().isEmpty()
+                || un.getText().isEmpty()|| ps.getText().isEmpty()){
+             JOptionPane.showMessageDialog(null,"All fields are required!");    
+            }else if(ps.getText().length()<8){
+            JOptionPane.showMessageDialog(null,"Password character should be 8 above");  
+            ps.setText("");
+            }else if(duplicateCheck()){
+                System.out.println("Duplicate Exist");
+                
+            }else{
               dbConnector dbc = new dbConnector();
               if(dbc.insertData("INSERT INTO tbl_user(u_fname u_lname, u_email, u_username, u_password, u_type, u_status) "
                         + "VALUE('"+fn.getText()+"','"+ln.getText()+"','"+em.getText()+"','"+un.getText()+"','"+ps.getText()+"','"+ut.getSelectedItem()+"','Pending')")){
                   
-              {         
-                  JOptionPane.showMessageDialog(null,"Inserted Successfully!");
+            {         
+                JOptionPane.showMessageDialog(null,"Inserted Successfully!");
                 loginForm lfr = new loginForm();
                 lfr.setVisible(true);
                 this.dispose();
-              }
-               }else{   
+            }
+            }else{   
                 JOptionPane.showMessageDialog(null,"Connection Error!");
-              }
-                
+            }
+        }       
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

@@ -5,7 +5,9 @@
  */
 package blottersystem;
 
+
 import admin.adminDashboard;
+import admin.usersForm;
 import config.dbConnector;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,12 +26,21 @@ public class loginForm extends javax.swing.JFrame {
         initComponents();
     }
     
+    static  String status;
+    static String type;
+            
     public static boolean loginAcc(String username, String password){
         dbConnector connector = new dbConnector();
         try{
             String query = "SELECT * FROM tbl_user WHERE u_username = '"+username+"'AND u_password ='"+ password +"'";
             ResultSet resultSet = connector.getData(query);
-            return resultSet.next();
+           if(resultSet.next()){
+               status = resultSet.getString("u_status");
+               type = resultSet.getString("u_type");
+               return true;
+           }else{
+               return false;
+           }
         }catch(SQLException ex){
             return false;
         }
@@ -55,7 +66,7 @@ public class loginForm extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        pass = new javax.swing.JTextField();
+        password = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -109,7 +120,7 @@ public class loginForm extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 250, 310));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 250, 270));
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel3.setText("User Name:");
@@ -137,12 +148,12 @@ public class loginForm extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 250, 90, 30));
 
-        pass.addActionListener(new java.awt.event.ActionListener() {
+        password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passActionPerformed(evt);
+                passwordActionPerformed(evt);
             }
         });
-        jPanel1.add(pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 210, 210, 30));
+        jPanel1.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 210, 210, 30));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -171,9 +182,9 @@ public class loginForm extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passActionPerformed
+    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_passActionPerformed
+    }//GEN-LAST:event_passwordActionPerformed
 
     private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
         // TODO add your handling code here:
@@ -181,15 +192,30 @@ public class loginForm extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        
-        if(loginAcc(user.getText(), pass.getText())){
-            JOptionPane.showMessageDialog(null,"Login Success!");
-            adminDashboard ads = new adminDashboard();
-            ads.setVisible(true);
-            this.dispose();
+        
+        if(loginAcc(user.getText(), password.getText())){
+            if(status.equals("Active")){
+            JOptionPane.showMessageDialog(null,"In-Active Account, Contact the Admin!");            
         }else{
-             JOptionPane.showMessageDialog(null,"Login Failed!");
+            if(type.equals("Admin")){
+                JOptionPane.showMessageDialog(null,"Login Successfully!");
+                adminDashboard ads = new adminDashboard();
+                ads.setVisible(true);
+                this.dispose();  
+            }else if(type.equals("User")){
+                JOptionPane.showMessageDialog(null,"Login Successfully!");
+                usersForm usf = new usersForm();
+                usf.setVisible(true);
+                this.dispose();  
+            }else{
+                 JOptionPane.showMessageDialog(null,"No account type found,Contact the Admin!");
+            }
+         }
+        }else{
+            JOptionPane.showMessageDialog(null,"invalid Account!");
+        }      
     }//GEN-LAST:event_jButton2ActionPerformed
-    }
+   
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -247,7 +273,7 @@ public class loginForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField pass;
+    private javax.swing.JTextField password;
     private javax.swing.JTextField user;
     // End of variables declaration//GEN-END:variables
 }
