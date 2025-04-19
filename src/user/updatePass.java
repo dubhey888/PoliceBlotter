@@ -68,7 +68,7 @@ public class updatePass extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(204, 204, 204));
         jLabel3.setText("UPDATE ACCOUNT PASSWORD");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 30));
@@ -96,6 +96,7 @@ public class updatePass extends javax.swing.JFrame {
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 140, 290));
 
         currentPass.setBackground(new java.awt.Color(255, 204, 51));
+        currentPass.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         currentPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 currentPassActionPerformed(evt);
@@ -104,6 +105,7 @@ public class updatePass extends javax.swing.JFrame {
         jPanel1.add(currentPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, 220, 30));
 
         npass.setBackground(new java.awt.Color(255, 204, 51));
+        npass.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         npass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 npassActionPerformed(evt);
@@ -112,6 +114,7 @@ public class updatePass extends javax.swing.JFrame {
         jPanel1.add(npass, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, 220, 30));
 
         conPass.setBackground(new java.awt.Color(255, 204, 51));
+        conPass.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jPanel1.add(conPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 170, 220, 30));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -184,7 +187,7 @@ public class updatePass extends javax.swing.JFrame {
             String currenthash = passwordHasher.hashPassword(currentPass);
             
             if(currentPass.equals(currenthash)){
-                String npass = passwordHasher.hashPassword(newpass.getText());
+                String npass = passwordHasher.hashPassword(newPass.getText());
                 dbc.updateData("UPDATE tbl_user SET u_password = '"+npass+"'");
                 JOptionPane.showMessageDialog(null,"Successfully Updated!");
                 loginForm lg = new loginForm();

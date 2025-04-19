@@ -129,6 +129,7 @@ public class accountDetails extends javax.swing.JFrame {
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 200, 350));
 
         fn.setBackground(new java.awt.Color(255, 204, 51));
+        fn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         fn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fnActionPerformed(evt);
@@ -145,9 +146,11 @@ public class accountDetails extends javax.swing.JFrame {
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 80, 30));
 
         ln.setBackground(new java.awt.Color(255, 204, 51));
+        ln.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jPanel1.add(ln, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 150, 210, 30));
 
         em.setBackground(new java.awt.Color(255, 204, 51));
+        em.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         em.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 emActionPerformed(evt);
@@ -164,6 +167,7 @@ public class accountDetails extends javax.swing.JFrame {
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, -1, 30));
 
         un.setBackground(new java.awt.Color(255, 204, 51));
+        un.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         un.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 unActionPerformed(evt);
@@ -182,9 +186,11 @@ public class accountDetails extends javax.swing.JFrame {
 
         ut.setBackground(new java.awt.Color(255, 204, 51));
         ut.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "User", " " }));
+        ut.setBorder(new javax.swing.border.MatteBorder(null));
         jPanel1.add(ut, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, 210, 30));
 
         idDisplay.setBackground(new java.awt.Color(255, 204, 51));
+        idDisplay.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         idDisplay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 idDisplayActionPerformed(evt);

@@ -95,6 +95,8 @@ public class regForm extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         fn.setBackground(new java.awt.Color(255, 204, 51));
+        fn.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        fn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         fn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fnActionPerformed(evt);
@@ -103,9 +105,11 @@ public class regForm extends javax.swing.JFrame {
         jPanel1.add(fn, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, 210, 30));
 
         ln.setBackground(new java.awt.Color(255, 204, 51));
+        ln.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jPanel1.add(ln, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 170, 210, 30));
 
         em.setBackground(new java.awt.Color(255, 204, 51));
+        em.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         em.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 emActionPerformed(evt);
@@ -114,6 +118,7 @@ public class regForm extends javax.swing.JFrame {
         jPanel1.add(em, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 210, 210, 30));
 
         un.setBackground(new java.awt.Color(255, 204, 51));
+        un.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         un.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 unActionPerformed(evt);
@@ -123,6 +128,7 @@ public class regForm extends javax.swing.JFrame {
 
         ut.setBackground(new java.awt.Color(255, 204, 51));
         ut.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "User", " " }));
+        ut.setBorder(new javax.swing.border.MatteBorder(null));
         jPanel1.add(ut, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 330, 210, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -202,6 +208,7 @@ public class regForm extends javax.swing.JFrame {
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 70, -1, -1));
 
         ps.setBackground(new java.awt.Color(255, 204, 51));
+        ps.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         ps.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 psActionPerformed(evt);
